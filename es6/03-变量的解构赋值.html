@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title></title>
+
+  </head>
+  <body >
+  <script>
+    let [a, b, c] = [1, 2, 3];
+    console.log(a);
+    console.log(b);
+    console.log(c);
+
+
+    let [foo, [[bar], baz]] = [4, [[5], 6]];
+    console.log(foo)
+    console.log(bar)
+    console.log(baz)
+
+    let [ , , third] = ["foo", "bar", "baz"];
+
+    console.log(third)// "baz"
+
+    let [x, y] = [11, 22, 33];
+    console.log(x)//11
+    console.log(y)//22
+
+    let [m, ,n] = [11, 22, 33];
+    // let [x, , y]
+    console.log(m)//11
+    console.log(n)//33
+
+
+    let [head, ...tail] = [1, 2, 3, 4];
+    console.log(head)//1
+    console.log(tail)//[2, 3, 4]
+
+
+
+    // 默认值
+    // 解构赋值允许指定默认值。
+
+    let [fo=true] = [];
+    console.log(fo)
+  </script>
+
+  <script>
+    let { A, B } = { foo: "aaa", bar: "bbb" };
+    console.log(A)//undefined
+    console.log(B)//undefined
+
+    //对象的属性没有次序，变量必须与属性同名，才能取到正确的值
+    let { C, D } = {  D: "bbb",C: "aaa" };
+    console.log(C)//aaa
+    console.log(D)//bbb
+
+    let { bazz } = { foo: "aaa", bar: "bbb" };
+    console.log(bazz) // undefined
+
+
+    let { bazzz } = { foo: "aaa", bazzz: "bbb" };
+    console.log(bazzz) // bbb
+
+  </script>
+  </body>
+</html>
