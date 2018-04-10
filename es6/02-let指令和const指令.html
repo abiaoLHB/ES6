@@ -25,29 +25,31 @@
     var a = [];
     for (var i = 0; i < 10; i++) {
       a[i] = function () {
-        console.log(i);
+        // console.log(i);
       };
     }
     a[6](); // 10
 
-  // var a = [];
-  // for (let i = 0; i < 10; i++) {
-  //   a[i] = function () {
-  //     console.log(i);
-  //   };
-  // }
-  // a[7](); // 6
-  // a[5](); // 6
+  var a = [];
+  for (let i = 0; i < 10; i++) {
+    a[i] = function () {
+      console.log(i);
+    };
+  }
+  // a[7](); // 7
+  // a[5](); // 5
 
 // 函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域
-  for (let i = 0; i < 3; i++) {
-    let i = 'abc';
-    console.log(i);
+  for (let bb = 0; bb < 3; bb++) {
+    // console.log(bb) //报错，bb没定义
+    let bb = 'abc';
+    // console.log(bb);//3次abc
   }
+  // console.log(bb)//报错，bb没定义
 
   // var 的情况
   // 变量foo用var命令声明，会发生变量提升，即脚本开始运行时，变量foo已经存在了，但是没有值，所以会输出undefined
-  console.log(foo); // 输出undefined
+  // console.log(foo); // 输出undefined
   var foo = 2;
 
   // let 的情况
@@ -57,18 +59,19 @@
 
 
 // 暂时性死区
-// var temp = 123;
-// if(true){
-//   // 如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
-//   temp = 'abc'; //Uncaught ReferenceError: temp is not defined.
-//   // 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
-//   let temp;
-// }
+var temp = 123;
+if(true){
+  // 如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+  temp = 'abc'; //Uncaught ReferenceError: temp is not defined.
+  // 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+  // let temp;
+  // console.log(temp)
+}
 
 
 
 // let不允许在相同作用域内，重复声明同一个变量。
-console.log('--------------')
+// console.log('--------------')
 function func(){
   // let a=10;
   // var a=1;
@@ -88,7 +91,7 @@ function func4(arg) {
     let arg; // 不报错
   }
 }
-// func4();
+func4();
 
 
 // 为什么需要块级作用域？
@@ -102,32 +105,34 @@ function f() {
     var tmp = 'hello world';
   }
 }
-console.log('01-ECMAScript 6简介.html==')
+
 // f(); // undefined
 
 
 var s = 'hello';
 
 for (var i = 0; i < s.length; i++) {
-  console.log(s[i]);
+  // console.log(s[i]);
 }
 
 // console.log(i); // 5
-//
+
 function f1() {
   let n = 5;
   if (true) {
     let n = 10;
   }
-  console.log(n); // 5
+  // console.log(n); // 5
 }
 f1();
+
+
 function f2() {
   var n = 5;
   if (true) {
     var n = 10;
   }
-  console.log(n); // 5
+  // console.log(n); 
 }
 f2();
 
@@ -141,7 +146,7 @@ f2();
 // console.log(x);
 
 const PI = 3.1415926;
-console.log(PI)
+// console.log(PI)
 // 不能更改
 // PI = 3;// Uncaught TypeError: Assignment to constant variable.
 // const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。
@@ -154,11 +159,11 @@ let name = 'zach'
 
 while (true) {
     let name = 'obama'
-    console.log(name)  //obama
+    // console.log(name)  //obama
     break
 }
 
-console.log(name)  //zach
+// console.log(name)  //zach
 
 
 

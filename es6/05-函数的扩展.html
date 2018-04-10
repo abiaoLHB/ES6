@@ -9,21 +9,262 @@
   <body >
   <script>
     function log(x, y = 'World') {
-      console.log(x, y);
+      // console.log(x, y);
     }
 
-    log('Hello') // Hello World
-    log('Hello', 'China') // Hello China
-    log('Hello', '') // Hello
+    // log('Hello') // Hello World
+    // log('Hello', 'China') // Hello China
+    // log('Hello', '') // Hello
 
     // 函数默认值
 
-    function Point(x=0,y=0){
-      this.x = x;
-      this.y = y;
-    }
-    const p = new Point();
-    console.log(p)
+    // function Point(x=0,y=0){
+    //   this.x = x;
+    //   this.y = y;
+    // }
+    // const p = new Point();
+    // console.log(p)
+
+    // 函数的默认参数
+    (function(){
+
+      function argumes(time,year){
+        //ES5 用法
+        // 不传的参数，通通是undefined
+        // console.log(time)
+        // time = time || 2000;
+        // year = year || 2017;
+        // 以上还不太安全，当参数传0时，还是返回后面的默认值
+        // console.log(time)
+
+        // 安全做法 代码繁琐
+        // time = (typeof time !== "undefined") ? time : 3000;
+        // year = (typeof year !== "undefined") ? year : 2018;
+        // console.log(time)
+        // console.log(year)
+      }
+      argumes();
+
+      // 默认参数
+      function makeQuest(url,time=2800,address='北京市'){
+        // console.log(url)//undefiend
+        // console.log(time)//2800
+        // console.log(address)//北京市
+      };
+      makeQuest();
+      // 传null也不使用默认值
+      makeQuest('www.baidu.com',null);
+
+
+      // 不定参数
+      // function buding(first,...keys){
+      //   console.log(first);//firstArg
+      //   console.log(keys);//["a", "b", "c"]
+      //   console.log(arguments.length)//4,arguments包含所有传入函数的参数
+      //   console.log(keys.length)//3
+
+      // };
+      // buding('firstArg','a','b','c')
+
+      function picker(object,...keys){
+        let result = Object.create(null);
+
+        for(let i=0,len=keys.length;i<len;i++){
+          console.log(keys[i])
+          result[keys[i]] = object[keys[i]];
+        }
+        return result;
+      };
+
+      var person = {
+        name:'luohognbiao',
+        age:28,
+        address:'beijing'
+      }
+
+      var newPserson = picker(person,'name','age');
+      console.log(newPserson)
+
+
+      // 增强的Function构造函数
+      var add = new Function('first','second','return first+second');
+      // console.log(add(100,50));//150
+
+      // 增强的Function构造函数-默认参数
+      var add2 = new Function('first','second=first','return first+second');
+      // console.log(add2(30));//60
+
+      // 增强的Function构造函数-不定参数
+      var add3 = new Function('...keys','return keys[0]');
+      // console.log(add3('a','b','c','d'))
+
+      // 展开运算符
+      // ES5
+      let value1 = 51,value2=101;
+      console.log(Math.max(value1,value2));
+
+      let values = [1,3,398,200];
+      console.log(Math.max(values));//NaN
+      console.log(Math.max.apply(Math,values))//398
+
+      // ES6
+      var number= [3,5,1,24,9];
+      // 相当于 Math.max(3,5,1,24,9)
+      console.log(Math.max(...number))//24
+      console.log(Math.min(...number))//1
+
+      // 展开预算符的限定值
+      var number2 = [-30,-20,-50]
+      console.log(Math.max(...number2,0));//0
+
+
+
+
+      // 回顾下ES5 bind 方法
+      window.color = 'red';
+      var o = {color : 'blue'};
+      function sayColor(){
+        console.log('this color');
+        console.log(this.color);
+        console.log('this color');
+      }
+      sayColor();//red
+      sayColor.apply(o);//blue
+
+      // dind 创建一个函数实例，其this值绑定到传入bind函数的值
+      var objectSayColor = sayColor.bind(o);
+      objectSayColor()//blue
+
+      // 函数的name属性
+      console.log(sayColor.name);//sayColor
+
+
+      // 元属性，new.target
+      // 构造函数
+      function Person(name){
+        // console.log(new.target)
+        // 是通过new操作符来调用的
+       // if(typeof new.target!=='undefined'){
+       //    this.name = name;
+       // }
+       // 是否被特定的构造函数所调用
+       if(new.target === Person){
+        this.name = name;
+       }
+       else{
+        throw new Error('该函数必须通过new操作符来调用')
+       }
+      }
+
+      let person1 = new Person('luohongbiao')
+      console.log(person1.name)
+
+      // let person2 = Person('wsh');//Uncaught Error: 该函数必须通过new操作符来调用
+
+      function AnotherPerson(name){
+        Person.call(this,name)
+      }
+      var person3 = new Person("Nicholas");
+      console.log(person3.name)//Nicholas
+
+      // var anotherPerson = AnotherPerson('lc');//报错，必须通过Person来调用
+      //如果是判断undefineded，则不回报错
+    })();
+
+    (function(){
+      // 箭头函数
+      //0、空函数
+      let empty = ()=>{};
+      //相当于
+      let empty1 = function(){};
+
+      // 1、没有参数
+      let getName = ()=>'luohongbiaoArrow';
+      console.log(getName());
+      // 相当于
+      let getName1 = function(){
+        return 'luohongbiaoArrow'
+      }
+
+      // 2、只有一个参数
+      let reflect = value => value;
+      console.log(reflect(100));
+      // 相当于
+      let reflect1 = function(value){
+        return value;
+      }
+
+      // 3、两个或者多个参数
+      let sum = (sum1,sum2)=>sum1+sum2;
+      console.log(sum(1,9));
+      // 相当于
+      let sum1 = function(sum1,sum2){
+        return sum1+sum2;
+      };
+
+      // 4、多个表达式构成的更传统的函数体,花括号括起来
+      let sum2 = (sum1,sum2)=>{
+        return sum2+sum1;
+      };
+      // 相当于
+      let sum3 = function(sum1,sum2){
+        return sum1+ sum2;
+      };
+
+      // 5、箭头函数返回对象字面量
+      let obj = id => ({id:id,name:'timp'});
+      console.log(obj('10086'));
+      // 相当于
+      let obj1 = function(id){
+        return{
+          id:id,
+          name:'timp'
+        }
+      }
+      console.log(obj1('10010'));
+
+      //6、箭头函数的立即执行函数, 就是把箭头函数定义的部分用小括号扩起来
+      let iifi = (name=>{
+        return{
+          getName:function(){
+            return name;
+          }
+        }
+      })('Nicolasppp');
+      console.log(iifi.getName());//Nicolasppp
+
+      // 箭头函数内部没有this绑定，箭头函数内部的this值是最近一层非箭头函数的this值，否则this的值会被设置为全局对象。this值是通过作用于链来查找的。
+      let PageHanlder = {
+        id:'123456',
+        init:function(){
+          document.addEventListener("click",event=>{
+            this.doSomething(event.type)
+            console.log('PageHanlder+this')
+            console.log(this)//PageHanlder
+            console.log('PageHanlder+this')
+          },false)
+        },
+
+        doSomething:function(type){
+          console.log('Handling'+type+'for'+this.id);
+        }
+
+      }
+      PageHanlder.init();//Handlingclickfor123456
+
+
+      //箭头函数和数组
+      let sortValues = [8,5,9,10,56,0,1,12];
+      let sortValues1 = [8,5,9,10,56,0,1,12];
+      
+      let result = sortValues.sort(function(a,b){
+        return a-b;
+      })
+      console.log(result);//[0, 1, 5, 8, 9, 10, 12, 56]
+      console.log(sortValues1.sort((a,b)=>a-b));//[0, 1, 5, 8, 9, 10, 12, 56]
+
+
+    })();
 
 
 
