@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	(function(){
+	 // 1、创建set集合
+	 let set = new Set();
+	 // 2、往集合里添加元素
+	 set.add('5');
+	 set.add(5);
+	 // 3、查看集合元素数
+	 console.log(set.size);//2
+	 //4、判断集合中是否有某个值
+	 console.log(set.has(5));//true
+	 console.log(set.has(6));//false
+	 // 5、用数组初始化集合
+	 let set1 = new Set([1,2,3,4,4,5]);
+	 console.log(set1);//{1, 2, 3, 4, 5} 自动去重
+
+	 // 6、delete（）删除某一个元素
+	 set1.delete(4);
+	 console.log(set1);//{1, 2, 3, 5}
+	 console.log(set1.has(4));//false
+
+	 //7、clear（）清空集合
+	 console.log(set1.clear());//undefined
+	 console.log(set1.has(1));//false
+	 console.log(set1.size);//0
+
+
+	 // set集合的forEach方法。和数组forEach的唯一差别就是接受函数的前两个参数相同
+	 let set2 = new Set(['a','b','c','d']);
+	 set2.forEach(function(value,key,owerset){
+	 	console.log('value');
+	 	console.log(value);
+	 	console.log('value');
+
+	 	console.log('key');
+	 	console.log(key)
+	 	console.log('key');
+
+	 	console.log('owerset')
+	 	console.log(owerset)
+	 	console.log('owerset')
+
+	 });
+
+	 // 如果需要在回掉函数中使用this，可以传入第二个参数
+	 let set3 = new Set([1,2]);
+	 let processor = {
+	 	output(value){
+	 		console.log(value);
+	 	},
+	 	// process(dataSet){
+	 	// 	dataSet.forEach(function(value){
+	 	// 		this.output(value);
+	 	// 	},this);
+	 	// }
+
+	 	// 使用箭头函数就不用额外传this了
+	 	process(dataSet){
+	 		dataSet.forEach(value=>this.output(value));
+	 	}
+
+	 }
+	 processor.process(set3);//1,2
+
+
+	 // set集合传换成数组
+	 let set4 = new Set([1,2,3,4,5,5]);
+	 var newArr = [...set4];
+	 console.log(newArr);
+	 // 这样就可以很容易的封装一个数去重方法
+	var quchong = items=>[... new Set(items)];
+	var arr=[1,1,1,2,2,3,4,5,5,5,9,9];
+	console.log('quchong(arr)');
+	console.log(quchong(arr));
+	console.log('quchong(arr)');
+
+
+	function chu(items){
+		return [...new Set(items)];
+	}
+	var arr1 = chu(arr);
+	console.log(arr1);
+
+
+	// WeakSet集合
+	var weak = new WeakSet(),key1={};
+	weak.add(key1);
+	console.log(weak);
+	// weak.add(1);//报错，只能add对象
+
+
+	})();
+
+
+	(function(){
+		// map集合
+		let map = new Map();
+		map.set('title',"深入理解ES6");
+		map.set('year',2016);
+		console.log(map.get('title'));
+		console.log(map.get('year'));
+		console.log(map.get('pp'));//undefined
+
+		// 用数组初始化map
+		let map1 = new Map([['name','nigulas'],['age',26],['address','beijing']]);
+		console.log(map1.size);//3
+		console.log(map1.get('name'));//nigulas
+		console.log(map1.has('name'));//true
+		map1.delete('name');
+		console.log(map1.has('name'));//false
+
+		// console.log(map1.clear());//undefined
+		// console.log(map1.size);//0
+
+		// map的forEach方法
+		map1.forEach(function(value,key,owerMap){
+			console.log('value= '+value+' key= '+key);
+		});
+
+		var person=new Object();
+		person[name]='luo';
+		person.age = 29;
+
+		console.log(person);
+		console.log(person['age']);
+
+
+	})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+	
+</body>
+</html>

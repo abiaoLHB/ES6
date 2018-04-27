@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="id1">fsd</div>
+	<div id="id2">wre</div>
+	<div id="id3">gdf</div>
+	<div id="id4"></div>
+	<div id="id5"></div>
+	<div id="id6"></div>
+	<div id="id7"></div>
+	<div id="id8"></div>
+	<div id="id9"></div>
+	<div id="id10"></div>
+	<script>
+	// 创建一个生成器
+	function *shegncheng(){
+		yield 1,
+		yield 2;
+		yield 3;
+	}
+	let iterator = shegncheng();
+	console.log(iterator.next());//{value: 1, done: false}
+	console.log(iterator.next());//{value: 2, done: false}
+
+	// for-of循环
+	var arr = [1,2,3,4,5,6];
+	for(let num of arr){
+		console.log(num);
+	}
+
+
+	// 内建迭代器 entries 迭代器
+	let colors = ['red','green','blue'];
+	let tracking = new Set([1234,5678,9012]);
+	let data = new Map([['name','luo'],['formt','ebook']]);
+
+
+
+	for(let entry of colors.entries()){
+		console.log(entry)
+	}
+
+	for(let entry of tracking.entries()){
+		console.log(entry)
+	}
+
+	for(let entry of data.entries()){
+		console.log(entry)
+	};
+
+
+
+	// values迭代器
+	// for(let value of colors.values()){
+	// 	console.log(value)
+	// };
+	for(let value of tracking.values()){
+		console.log(value);
+	};
+	for(let value of data.values()){
+		console.log(value);
+	}
+
+	console.log('---------');
+
+	for(let key of colors.keys()){
+		console.log(key);
+	}
+
+	for(let key of tracking.keys()){
+		console.log(key)
+	}
+	for(let key of data.keys()){
+		console.log(key)
+	}
+
+	// 字符串迭代器
+	var string = 'luo罗';
+	console.log(string[1]);
+	console.log(string.length);
+
+	for (let c of string){
+		console.log(c);
+	}
+
+
+	var divs = document.getElementsByTagName('div');
+	for(let div of divs){
+		console.log(div);
+		console.log(div.id);
+
+	}
+
+	</script>
+
+	
+</body>
+</html>

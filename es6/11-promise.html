@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+</head>
+<body>
+	<script>
+	let promise = new Promise(function(resolve,reject){
+		console.log('promise');
+		resolve();
+		console.log('reject');
+		reject();
+	});
+
+	promise.then(function(){
+		console.log('Resolve');
+	});
+	promise.catch(function(){
+		console.log('Cath');
+	})
+
+	console.log('Hi');
+
+
+	</script>
+	
+</body>
+</html>
