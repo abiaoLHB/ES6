@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+
+	<!--第一种方式 script 引入的标签被认为是ES5文件 -->
+	<!-- <script type='module' src='./example.js'>
+		console.log(color)
+		console.log(name)
+	</script> -->
+
+
+
+	<!-- 第二种方式 -->
+	<script>
+		var aa = 11
+	</script>
+	<script type="module">
+		// import { multiply, color } from "./example.js"
+		// console.log(aa)
+		// console.log(multiply(2, 3))
+		// console.log(color)
+
+		// import * as example from "./example.js"
+		// console.log(example.color)
+		// console.log(example.magicNumber)
+		// console.log(example.multiply(2,5))
+		// console.log(example.plus(8,9))
+		// // 未导出，私有
+		// // console.log(example.subtract(2,4))
+		// import { multiply as plusjia } from "./example.js"
+		// console.log(plusjia(10, 10))
+
+
+		// import getName from "./example.js"
+		// console.log(getName())
+
+		// import { whosthis } from "./example.js"
+		// console.log(whosthis())//undefind
+
+	</script>
+</body>
+
+</html>
