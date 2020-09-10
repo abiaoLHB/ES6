@@ -10,16 +10,67 @@
 
 <body>
     <script>
-        function* gen() {
-            yield 1 + 9;
-            yield 2 + 9;
-            yield 3 + 9;
-            return 4 + 9;
+        // function* gen() {
+        //     yield 1 + 9;
+        //     yield 2 + 9;
+        //     yield 3 + 9;
+        //     return 4 + 9;
+        // }
+
+        // let genObj = gen()
+        // console.log(genObj.next())
+
+
+
+        // function* gener() {
+        //     yield "luohongbiao";
+        //     yield function () {
+        //         return '函数=' + 3 * 7
+        //     }
+        //     yield 1 + 8
+        //     return "beijing"
+        // }
+
+        // let genObj = gener()
+        // console.log(genObj)
+        // let timer = setInterval(() => {
+        //     let nextObj = genObj.next()
+        //     if (nextObj.value && typeof (nextObj.value) == 'function') {
+        //         console.log(nextObj.value())
+        //     } else {
+        //         console.log(nextObj.value)
+        //     }
+
+        //     if (!nextObj.value) {
+        //         console.log("全部结束")
+        //         clearInterval(timer)
+        //     }
+
+        // }, 500)
+
+
+
+        function* myGener() {
+            yield "string"
+            yield 100
+            yield ['a', 1]
         }
 
-        let genObj = gen()
-        console.log(genObj.next())
+        let myGenObj = myGener()
+        let timer2 = setInterval(() => {
+            let nextObj = myGenObj.next()
+            if (nextObj.value && typeof (nextObj.value) == 'function') {
+                console.log(nextObj.value())
+            } else {
+                console.log(nextObj.value)
+            }
 
+            if (!nextObj.value) {
+                console.log("全部结束")
+                clearInterval(timer2)
+            }
+
+        }, 500)
 
     </script>
 </body>
