@@ -10,19 +10,19 @@
 
 <body>
     <script>
-        function Point(x, y) {
+        function PointOne(x, y) {
             this.x = x
             this.y = y
         }
-        Point.prototype.toString = function () {
+        PointOne.prototype.toString = function () {
             return '(' + this.x + ',' + this.y + ')'
         }
-        var p = new Point(3, 5)
+        var p = new PointOne(3, 5)
         console.log(p)
         console.log(p.toString())
 
 
-        class Point {
+        class PointTwo {
             // 构造方法
             constructor(x, y) {
                 this.x = x;
@@ -33,6 +33,16 @@
             }
         }
 
+        console.log(typeof PointTwo)
+        console.log(PointTwo == PointTwo.prototype.constructor)
+
+        class Bar {
+            doSth() {
+                console.log('soSth---')
+            }
+        }
+        var bar = new Bar()
+        bar.doSth()
 
     </script>
 
