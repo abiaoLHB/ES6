@@ -50,27 +50,42 @@
 
 
 
-        function* myGener() {
-            yield "string"
-            yield 100
-            yield ['a', 1]
+        // function* myGener() {
+        //     yield "string"
+        //     yield 100
+        //     yield ['a', 1]
+        // }
+
+        // let myGenObj = myGener()
+        // let timer2 = setInterval(() => {
+        //     let nextObj = myGenObj.next()
+        //     console.log(nextObj)
+
+        //     if (!nextObj.value) {
+        //         console.log("全部结束")
+        //         clearInterval(timer2)
+        //     }
+
+        // }, 500)
+
+        // 语法错误，只能用在生成器函数里
+        // (function(){
+        //     yield 1
+        // })()
+
+        function* demo() {
+            // console.log('Hello' + yield); // SyntaxError
+            // console.log('Hello' + yield 123); // SyntaxError
+
+            console.log('Hello' + (yield)); // OK
+            console.log('Hello' + (yield 123)); // OK
         }
 
-        let myGenObj = myGener()
-        let timer2 = setInterval(() => {
-            let nextObj = myGenObj.next()
-            if (nextObj.value && typeof (nextObj.value) == 'function') {
-                console.log(nextObj.value())
-            } else {
-                console.log(nextObj.value)
-            }
+    console.log(demo().next())
+    console.log(demo().next())
+    console.log(demo().next())
+    console.log(demo().next())
 
-            if (!nextObj.value) {
-                console.log("全部结束")
-                clearInterval(timer2)
-            }
-
-        }, 500)
 
     </script>
 </body>
