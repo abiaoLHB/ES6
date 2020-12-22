@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            async function getStockPriceByName(name) {
+                const symbol = await getStockSymbol(name);
+                setTimeout(() => {
+                    console.log("11111111")
+                }, 2000);
+                const stockPrice = await getStockPrice(symbol);
+                    setTimeout(() => {
+                        console.log("22222")
+                    }, 2000);
+                return stockPrice;
+            }
+
+            getStockPriceByName('goog').then(function (result) {
+                console.log(result);
+            });
+
+            function getStockSymbol (){
+                setTimeout(() => {
+                    console.log("getStockSymbol---22222222")
+                }, 2000);
+            }
+            function getStockPrice (){
+                setTimeout(() => {
+                    console.log("getStockPrice663333333333333333")
+                }, 2000);
+            }
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+    </script>
+</body>
+
+</html>

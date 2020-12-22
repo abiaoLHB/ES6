@@ -10,39 +10,106 @@
 
 <body>
     <script>
-        function PointOne(x, y) {
-            this.x = x
-            this.y = y
-        }
-        PointOne.prototype.toString = function () {
-            return '(' + this.x + ',' + this.y + ')'
-        }
-        var p = new PointOne(3, 5)
-        console.log(p)
-        console.log(p.toString())
-
-
-        class PointTwo {
-            // 构造方法
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
+        (function () {
+            function PointOne(x, y) {
+                this.x = x
+                this.y = y
             }
-            toString() {
+            PointOne.prototype.toString = function () {
                 return '(' + this.x + ',' + this.y + ')'
             }
-        }
+            var p = new PointOne(3, 5)
+            console.log(p)
+            console.log(p.toString())
 
-        console.log(typeof PointTwo)
-        console.log(PointTwo == PointTwo.prototype.constructor)
 
-        class Bar {
-            doSth() {
-                console.log('soSth---')
+            class PointTwo {
+                // 构造方法
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+                toString() {
+                    return '(' + this.x + ',' + this.y + ')'
+                }
             }
-        }
-        var bar = new Bar()
-        bar.doSth()
+
+            console.log(typeof PointTwo)
+            console.log(PointTwo == PointTwo.prototype.constructor)
+
+            class Bar {
+                doSth() {
+                    console.log('soSth---')
+                }
+            }
+            var bar = new Bar()
+            bar.doSth()
+        })();
+
+        (function () {
+            class Point {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+                toString() {
+                    return '(' + this.x + ',' + this.y + ')';
+                }
+            }
+
+            console.log(typeof Point)
+            console.log(Point === Point.prototype.constructor)
+
+            class Bar{
+                doStuff(){
+                    console.log('doStuff')
+                }
+            }
+
+            const b = new Bar()
+            b.doStuff()
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+
+
 
     </script>
 
