@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proxy </title>
+</head>
+
+<body>
+    <script>
+        //proxy => pu rua k sei
+
+        (function () {
+            var obj = new Proxy({}, {
+                get: function (target, propKey, receiver) {
+                    console.log(`getting ${propKey}!`);
+                    return Reflect.get(target, propKey, receiver);
+                },
+                set: function (target, propKey, value, receiver) {
+                    console.log(`setting ${propKey}!`);
+                    return Reflect.set(target, propKey, value, receiver);
+                }
+            });
+            obj.count = 1
+            ++obj.count
+
+        })();
+        (function () {
+            // 第一个参数:要代理的目标对象
+            // 第二个参数：配置对象，对于每一个被代理的操作，需要提供一个对应的处理函数，该函数
+            // 将拦截对应的操作。
+            var proxy = new Proxy({}, {
+                // get方法的两个参数分别是目标对象和索要访问的属性
+                get: function (target, proxyKey) {
+                    console.log('---get---')
+                    console.log(target)
+                    console.log(proxyKey)
+                    console.log('---get---')
+                    return 35;
+                }
+            })
+
+            console.log(proxy.time) // 35
+            console.log(proxy.name) // 35
+            // 以上，也就是拦截了{}对象的访问请求，只要取{}对象的值，都统一返回35
+
+            // 注意：要是的Proxy起作用，必须针对Proxy实例进行操作，而不是针对目标对象(上面的{})
+            // 如果handler没有设置任何拦截，那就等同于直接返回原对象
+            var target = {};
+            var handler = {};//空对象，没有任何拦截，访问proxy2就等于访问target
+            var proxy2 = new Proxy(target, handler);
+            proxy2.a = 'b'
+            console.log(proxy2.a)
+
+        })();
+        (function () {
+            var person = {
+                name: "张三"
+            };
+            var proxy = new Proxy(person, {
+                get: function (target, propKey) {
+                    if (propKey in target) {
+                        return target[propKey]
+                    } else {
+                        throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
+                    }
+                }
+            });
+            console.log(proxy.name)
+            // console.log(proxy.address)//Uncaught ReferenceError: Prop name "address" does not exist.
+
+
+
+            let proto = new Proxy({}, {
+                get(target, propKey, receiver) {
+                    console.log("GET " + propKey)
+                    return target[propKey]
+                }
+            })
+            // 创建一个对象，被创建的对象继承另一个对象的原型。也就是obj的原型是 proto
+            let obj = Object.create(proto)
+            obj.foo // GET foo
+
+        })();
+
+        // set
+        (function () {
+            let validator = {
+                set: function (obj, prop, value, receiver) {
+                    if (prop === 'age') {
+                        if (!Number.isInteger(value)) {
+                            throw new TypeError('The age is not an integer');
+                        }
+                        if (value > 200) {
+                            throw new RangeError('The age seems invalid');
+                        }
+                        obj[prop] = value;
+                    }
+                }
+            }
+            let person = new Proxy({}, validator)
+            person.age = 100
+            console.log(person.age)
+
+            // person.age = '100' //Uncaught TypeError: The age is not an integer
+            // person.age = 300   //Uncaught RangeError: The age seems invalid
+
+            
+
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+        (function () {
+
+        })();
+
+
+
+
+
+    </script>
+</body>
+
+</html>
