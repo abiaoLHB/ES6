@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        // import命令具有提升效果，会提升到整个模块的头部，首先执行.因为它是编译阶段执行的，在代码运行之前
+        import { firstName, lastName, year, multiply, address, age, person } from './module.js';
+        // es5 的模块化：服务端使用commonjs，浏览器端使用AMD规范
+        // es6 的模块化：服务端和浏览器端 都是用export和import
+        // export命令规定模块的对外接口，import命令用于输入其他模块提供的功能
+        // 一个模块就是一个独立文件。该文件内部的所有的变量，外部无法获取。
+
+        console.log(firstName)
+        console.log(lastName)
+        console.log(year)
+        console.log(multiply(10, 20))
+        console.log(address)
+        console.log(age)
+        console.log(person.name)
+        person.name = "李四" // 可以改对象的属性,但是不建议改
+        console.log(person.name)
+
+        // 模块的整体加载
+        import * as all from './all.js';
+
+        console.log(all.name)
+        console.log(all.age)
+        console.log(all.job)
+
+    </script>
+
+
+    <script type="module">
+        import customDefault from './defalt.js';
+        customDefault()
+
+        let count = 2
+        if (count == 1) {
+            import('./A.js').then(mode => {
+                console.log(mode.name)
+            })
+        } else {
+            import('./B.js').then(mode => {
+                console.log(mode.name)
+            })
+        }
+
+
+    </script>
+
+</body>
+
+</html>

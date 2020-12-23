@@ -70,6 +70,24 @@
             b.doStuff()
         })();
         (function () {
+            // constructor方法
+            class Point{
+
+            }
+            // 等同与
+            class Point1{
+                constructor(){
+                    console.log('printf--Point1')
+                }
+            }
+            let pt = new Point1() // 用new操作符调用时，会走constructor方法
+
+            // Point1() //直接报错，class必须用new调用，而构造函数可以不用new，这是一个差别
+
+            // 类的所有实例，共享一个原型对象
+            let pt1 = new Point()
+            let pt2 = new Point()
+            console.log(pt1.__proto__ === pt2.__proto__) // true
 
         })();
         (function () {

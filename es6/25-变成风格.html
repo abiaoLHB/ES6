@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //能用let不用var，能用const不用let
+        const a = 10;
+        const b = 20;
+        console.log(a + b)
+
+        // 字符串：静态字符串一律使用单引号或者反引号。动态字符串使用反引号
+        const name = `luohongbiao`
+        const address = `beijing_${b}_unit`
+        console.log(name)
+        console.log(address)
+
+        // 使用数组成员对变量解构赋值时，优先使用解构赋值
+        const arr = [1, 2, 3, 4, 5]
+        // bad
+        const first = arr[0]
+        const second = arr[1]
+        // good
+        const [third, fouth] = arr
+        console.log(first)
+        console.log(second)
+        console.log(third)
+        console.log(fouth)
+
+        // 函数参数 如果是对象成员，优先使用解构赋值
+        // bad
+        function getFullName(user) {
+            const firstName = user.firstName
+            const lastName = user.lastName
+            console.log('1111')
+            console.log(firstName)
+            console.log(lastName)
+            console.log('1111')
+        }
+        // good
+        function getFullName1(user) {
+            const { firstName, lastName } = user
+            console.log('2222')
+            console.log(firstName)
+            console.log(lastName)
+            console.log('2222')
+        }
+        getFullName({ firstName: 'luo', lastName: 'biao', age: 30 })
+        getFullName1({ firstName: 'luo', lastName: 'biao', age: 30 })
+        
+
+        // 使用...[]拷贝数组
+        let array = [1, 2, 3, 4, 5]
+        let arraycopy = [...array]
+        console.log(arraycopy)
+        let number = array.push['6', '7', '8']
+        console.log(number)
+        console.log(arraycopy)
+    </script>
+</body>
+
+</html>
