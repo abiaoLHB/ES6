@@ -18,9 +18,9 @@
                     console.log("11111111")
                 }, 2000);
                 const stockPrice = await getStockPrice(symbol);
-                    setTimeout(() => {
-                        console.log("22222")
-                    }, 2000);
+                setTimeout(() => {
+                    console.log("22222")
+                }, 2000);
                 return stockPrice;
             }
 
@@ -28,12 +28,12 @@
                 console.log(result);
             });
 
-            function getStockSymbol (){
+            function getStockSymbol() {
                 setTimeout(() => {
                     console.log("getStockSymbol---22222222")
                 }, 2000);
             }
-            function getStockPrice (){
+            function getStockPrice() {
                 setTimeout(() => {
                     console.log("getStockPrice663333333333333333")
                 }, 2000);
@@ -41,9 +41,125 @@
 
         })();
         (function () {
+            function timeout(ms) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve()
+                    }, ms);
+                });
+            }
+            async function asyncPrint(value, ms) {
+                await timeout(ms)
+                console.log(value)
+            }
+            asyncPrint('hellow word', 3000)
+        })();
+        // async函数内部return语句返回的值，会成为then方法回调函数的参数
+        (function () {
+            async function f() {
+                return 'hello wrord then'
+            }
+            f().then(v => {
+                console.log(v)
+            })
+        })();
+        // async内存错误会导致promise对象变为reject，抛出的错误会被catch捕获
+        (function () {
+            async function f() {
+                throw new Error({ error: '出错了' })
+            }
+            f().then(v => {
+                console.log('resolve', v)
+            }).catch(error => {
+                console.log("出错了--reject")
+                console.log(error)
+                console.log(error.toString())
+                console.log(JSON.stringify(error))
+                console.log("出错了--reject")
+            })
+
+            // async function getTitle(url) {
+            //     let response = await fetch(url);
+            //     let html = await response.text();
+            //     return html.match(/<title>([\s\S]+)<\/title>/i)[1];
+            // }
+            // getTitle('https://tc39.github.io/ecma262/').then(console.log)
+        })();
+        (function () {
+            // await 命令
+            // 正常情况下，await后面是一个promise对象，返回该对象的结果。如果不是Promise对象，就直接返回对应的值
+            async function f() {
+                return await 123 //不是promise对象，等于 return 123
+            }
+            f().then(v => console.log(v))
 
         })();
         (function () {
+            // sleep
+            function sleep(interval) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve()
+                    }, interval);
+                })
+            }
+
+            async function one2FiveInAsync() {
+                for (let i = 1; i <= 5; i++) {
+                    console.log(i)
+                    await sleep(1000)
+                }
+            }
+            one2FiveInAsync()
+
+            // 任何一个await语句后面的Promise对象变为reject状态，那么整个async函数都会中断执行
+            // async function f(){
+            //     await Promise.reject("出错了，中断执行")
+            //     await Promise.resolve("前面报错了，这里不会执行")
+            // }
+
+            // f()
+
+        })();
+        (function () {
+            // 前面报错，后面依然执行
+            async function f() {
+                try {
+                    await Promise.reject("又出错了")
+                } catch (error) {
+                    console.log("不中断，改执行执行")
+                }
+
+                return await Promise.resolve('哈哈哈哈哈')
+            }
+
+            f().then(v=>console.log(v))
+        })();
+
+
+
+        (function () {
+            async function foo(){
+                await setTimeout(()=>{
+                    console.log('foo-----')
+                },5000)
+            }
+            async function bar(){
+                await setTimeout(() => {
+                    console.log('bar-----')
+                }, 3000);
+            }
+
+            foo().then(res=>{
+                bar()
+            })
+        })();
+        (function () {
+            // 12 1.3
+            // gjj 1.1
+            
+            // 1 1.3
+            // jiang 1.3
 
         })();
         (function () {
