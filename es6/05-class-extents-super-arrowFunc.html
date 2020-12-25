@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title></title>
 
-  </head>
-  <body >
-    <div class="close">
-      close
-    </div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+
+</head>
+
+<body>
+  <div class="close">
+    close
+  </div>
 
 
   <script>
-     class Animal {
-      constructor(){
+    class Animal {
+      constructor() {
         this.type = 'animal'
       }
-      says(say){
-        console.log(this.type+' says ' + say)
+      says(say) {
+        console.log(this.type + ' says ' + say)
       }
     }
 
@@ -27,8 +29,8 @@
     animal.says('hellow');
 
 
-    class Cat extends Animal{
-      constructor(){
+    class Cat extends Animal {
+      constructor() {
         super()
         this.type = 'cat'
       }
@@ -39,71 +41,128 @@
     // arrow function
 
     //es5
-    function fun (i){
-      return i+1;
+    function fun(i) {
+      return i + 1;
     };
 
     //es6
-    (i)=>i+1;
+    (i) => i + 1;
 
-// 如果方程比较复杂，则需要用{}把代码包起来：
- function getdata(){
-    console.log('调用了getdata方法')
-  };
+    // 如果方程比较复杂，则需要用{}把代码包起来：
+    function getdata() {
+      console.log('调用了getdata方法')
+    };
 
-this.getdata();
-
-
- //  function initData(){
- //    console.log('调用了initData方法')
- //  }
- //  this.initData();
+    this.getdata();
 
 
- // function says(say){
- //    this.type = 'pp'
- //   var self = this;
- //   setTimeout(function(){
- //       console.log(self.type + ' says ' + say)
- //   }, 100)
-
- //   setTimeout(function(){
- //    console.log('do stm')
- //   }, 100)
- // }
- // this.says('ha');
-
- // function says1(say){
- //      this.type = 'qq'
- //      setTimeout( () => {
- //          console.log(this.type + ' says ' + say)
- //      }, 100)
+    //  function initData(){
+    //    console.log('调用了initData方法')
+    //  }
+    //  this.initData();
 
 
- //      setTimeout(()=>{
- //        console.log('我是箭头函数')
- //      },100)
- //  }
- //  this.says1('he')
+    // function says(say){
+    //    this.type = 'pp'
+    //   var self = this;
+    //   setTimeout(function(){
+    //       console.log(self.type + ' says ' + say)
+    //   }, 100)
+
+    //   setTimeout(function(){
+    //    console.log('do stm')
+    //   }, 100)
+    // }
+    // this.says('ha');
+
+    // function says1(say){
+    //      this.type = 'qq'
+    //      setTimeout( () => {
+    //          console.log(this.type + ' says ' + say)
+    //      }, 100)
+
+
+    //      setTimeout(()=>{
+    //        console.log('我是箭头函数')
+    //      },100)
+    //  }
+    //  this.says1('he')
 
 
 
 
-console.log('--------------')
-  // var f = v => v;
-  // console.log(f('hehe'));
+    console.log('--------------')
+    // var f = v => v;
+    // console.log(f('hehe'));
 
 
-// var f = ()=>5
-// console.log(f())
+    // var f = ()=>5
+    // console.log(f())
 
 
-// var f = (num1,num2)=>num1+num2;
-// console.log(f(1,8))
+    // var f = (num1,num2)=>num1+num2;
+    // console.log(f(1,8))
 
-// 如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回。
-  var getTempItem = id =>({id: id, name: "Temp"})
-  console.log(getTempItem('100'))
+    // 如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回。
+    var getTempItem = id => ({ id: id, name: "Temp" })
+    console.log(getTempItem('100'))
   </script>
-  </body>
+
+
+  <script>
+      (function () {
+        console.log("字符串新加的方法------------")
+        let s = "Hello Word"
+        console.log(s.startsWith('Hello')) //true
+        console.log(s.endsWith('ord')) // true
+        console.log(s.includes('o W')) //true
+        console.log(s.includes('f')) //false
+
+        // 以上三个方法都支持第二个参数，表示开始搜索的位置
+        let ss = 'Hello world!';
+        console.log('sssssss')
+        console.log(ss.startsWith('world', 6)) // true
+        console.log(ss.endsWith('Hello', 5)) // true //表示前5个字符
+        console.log(ss.includes('Hello', 6))// false
+        console.log(ss.includes('Hello', 0))// true
+
+
+        // repeat方法：返回一个新的字符串，表示将原字符串重复n次
+        console.log('x'.repeat(3))
+        console.log('Hello'.repeat(3))
+        // console.log('Hello'.repeat(-1))//参数负数报错
+
+
+        // 补全
+        console.log('abc'.padStart(10,'123'))
+        console.log('abc'.padStart(10))
+
+
+        // 老 trim
+        console.log(' abc '.trim())
+        console.log(' abc '.trimStart())
+        console.log(' abc '.trimEnd())
+
+        // replaceall
+        // 历史
+        console.log('aabbcc'.replace('b','*').replace('b','*'))
+        // console.log('aabbcc'.replaceAll('b', '_'))
+
+        console.log(Math.trunc('8.999999999'))
+        console.log(Math.trunc(9.999999999))
+
+      })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
 </html>

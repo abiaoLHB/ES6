@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+
+        </ul>
+    </div>
+    <script>
+        (function () {
+            let array = [1, 2, 3, 4, 5, 6]
+            console.log(array)
+            console.log(...array)
+
+            const a1 = [1, 2]
+            const a2 = a1 // a2不是a1的克隆，而是指向同一份数据的另一个指针,修改a2会导致a1的变化
+            console.log(a1)
+            console.log(a2)
+            a2.push(3)
+            console.log(a1)
+            console.log(a2)
+
+            // es5 变通方法复制数组
+            const b1 = ['a', 'b', 'c']
+            const b2 = b1.concat()
+            console.log(b1)
+            console.log(b2)
+
+            b2.push('d')
+            console.log(b1)
+            console.log(b2)
+
+
+        })();
+
+        (function () {
+            // 扩展运算符提供了复制数组的简便写法
+            const a1 = [7, 8, 9]
+            const a2 = [...a1]
+            const [...a3] = a1
+            console.log(a1)
+            console.log(a2)
+            a2.push(10)
+            console.log(a1)
+            console.log(a2)
+            console.log(a3)
+
+
+            // 合并数组
+            let array = [...a1, ...a2, ...a3]
+            console.log(array)
+
+        })();
+
+        // Array.from
+        (function () {
+            let arrayLike = {
+                '0': 'a',
+                '1': 'b',
+                '2': 'c',
+                length: 3
+            };
+            var array1 = [].slice.call(arrayLike)
+            // es5
+            console.log(array1)
+            // es6
+            console.log(Array.from(arrayLike))
+
+            let ps = document.querySelectorAll('p')
+            let trueArray = Array.from(ps).filter(p => {
+                return p.textContent.length > 100
+            })
+
+            console.log(trueArray)
+
+            console.log(Array.from('hello'))
+        })();
+
+        // Array.of
+        (function () {
+            // 将一组值，转换为数组
+            let array = Array.of(3, 22, 90)
+            console.log(array)
+            console.log(Array.of(5))
+            console.log(Array.of(5, 10).length)
+
+
+            // find方法 : 用于找出第一个符合条件的数组成员,他的参数是一个回调函数，
+            // 所有数组成员依次执行该回调函数，知道找出第一个返回值为true的成员，然后返回
+            // 该成员，如果没有符合条件的成员，则返回undefined
+            let find = [1, 4, -10, 15].find((n) => {
+                return n < 0
+            })
+
+            let find2 = [1, 4, -5, 10, -3].find((n) => n < 0)
+            let find3 = [1, 4, -5, 10, -3].find((n) => n < -100)
+            let find4 = [1, 4, -5, 10, -3].find((n, index, array) => {
+                console.log('---------')
+                console.log(n)
+                console.log(index)
+                console.log(array)
+                console.log('---------')
+                return n < -100
+            })
+
+            console.log('find=======')
+            console.log(find)
+            console.log(find2)
+            console.log(find3)
+            console.log('find=======')
+
+        })();
+
+        // Array.findIndex
+        (function () {
+            let findIndex = [1, 5, 10, 15].findIndex((value, index, array) => {
+                console.log('findIndex')
+                // console.log(value)
+                // console.log(index)
+                // console.log(array)
+                console.log('findIndex')
+
+                return value > 14
+            })
+
+            console.log(findIndex)
+        })();
+
+        // fill
+        (function () {
+            console.log(['a', 'b', 'c'].fill(7))
+            console.log(['a', 'b', 'c'].fill(7, 1, 2)) //["a", 7, "c"] 后两个参数是填充起始位置和结束为止
+        })();
+
+        //数组实例的遍历
+        (function () {
+            for (let index of ['a', 'b'].keys()) {
+                console.log(index)
+            }
+            for (let index of ['a', 'b'].values()) {
+                console.log(index)
+            }
+            for (let index of ['a', 'b'].entries()) {
+                console.log(index)
+            }
+        })();
+        //数组-includes
+        (function () {
+            console.log('includes------')
+            console.log([1, 2, 3].includes(2))
+            // es5
+            console.log([NaN].indexOf(NaN)) // -1
+            console.log([NaN].includes(NaN)) //true
+        })();
+
+        // flat() 拉平数组，把内嵌数组拉平成一个数组，返回新数组
+        if(1){
+
+            let a = 1
+            var array = [1,2,3,[4,5]]
+            var newArray = array.flat()
+            console.log('flat------')
+            console.log(array)
+            console.log(newArray)
+            console.log('flat------')
+        }
+
+    </script>
+
+</body>
+
+</html>

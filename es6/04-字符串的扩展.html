@@ -1,33 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title></title>
 
-  </head>
-  <body >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+
+</head>
+
+<body>
+  <!-- <script>
+    for (let codePonit of 'luohongbiao') {
+      console.log(codePonit)
+    }
+
+    let text = String.fromCodePoint(0x20BB7);
+
+    for (let i = 0; i < text.length; i++) {
+      console.log(text[i]);
+    }
+    // " "
+    // " "
+    for (let i of text) {
+      console.log(i);
+    }
+    console.log('x'.repeat(3))
+  </script> -->
+
   <script>
-  for(let codePonit of 'luohongbiao'){
-    console.log(codePonit)
-  }
+    (function () {
+      console.log("\u0061")
+      console.log("\uFFFF")
+      console.log("\uD842\uDFB7")
+      console.log("\u20BB7")
+      // 字符串遍历接口
+      for (let codePoint of 'foo') {
+        console.log(codePoint)
+      }
+    })();
+    (function () {
+      // 字符串模板，可以当做普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量
+      let number = 10
+      let template = `There are ${100} peoples`
+      console.log(template)
 
-  let text = String.fromCodePoint(0x20BB7);
+      // 普通字符串
+      console.log(`In JavaScript '\n' is a line-feed.`)
+      // 多行字符串
+      console.log(
+        `In JavaScript this is
+ not legal.`)
 
-  for (let i = 0; i < text.length; i++) {
-    console.log(text[i]);
-  }
-  // " "
-  // " "
+      // 字符串中嵌入变量
+      let name = "Bob", time = "today";
+    console.log( `Hello ${name}, how are you ${time}?`)
 
-  for (let i of text) {
-    console.log(i);
-  }
-  // "𠮷
+    // 如果在模板字符串中需要使用反引号，则要转义
+    console.log(`\`Yo\` Word`)
 
-console.log('x'.repeat(3))
+    // 运算
+    let obj = {x:1,y:9}
+    console.log(`add = ${obj.x + obj.y}`)
 
+    // 调用函数
+    function fn(){
+      return 'nihao'
+    }
+    console.log(`调用函数=:${fn()}`)
 
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
+    (function () {
+
+    })();
   </script>
-  </body>
+</body>
+
 </html>

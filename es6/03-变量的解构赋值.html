@@ -1,68 +1,366 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title></title>
 
-  </head>
-  <body >
-  <script>
-    let [a, b, c] = [1, 2, 3];
-    console.log(a);
-    console.log(b);
-    console.log(c);
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
 
+</head>
 
-    let [foo, [[bar], baz]] = [4, [[5], 6]];
-    console.log(foo)
-    console.log(bar)
-    console.log(baz)
-
-    let [ , , third] = ["foo", "bar", "baz"];
-
-    console.log(third)// "baz"
-
-    let [x, y] = [11, 22, 33];
-    console.log(x)//11
-    console.log(y)//22
-
-    let [m, ,n] = [11, 22, 33];
-    // let [x, , y]
-    console.log(m)//11
-    console.log(n)//33
+<body>
+  <!-- <script>
+    (function () {
+      let [a, b, c] = [1, 2, 3];
+      console.log(a);
+      console.log(b);
+      console.log(c);
 
 
-    let [head, ...tail] = [1, 2, 3, 4];
-    console.log(head)//1
-    console.log(tail)//[2, 3, 4]
+      let [foo, [[bar], baz]] = [4, [[5], 6]];
+      console.log(foo)
+      console.log(bar)
+      console.log(baz)
+
+      let [, , third] = ["foo", "bar", "baz"];
+
+      console.log(third)// "baz"
+
+      let [x, y] = [11, 22, 33];
+      console.log(x)//11
+      console.log(y)//22
+
+      let [m, , n] = [11, 22, 33];
+      // let [x, , y]
+      console.log(m)//11
+      console.log(n)//33
+
+
+      let [head, ...tail] = [1, 2, 3, 4];
+      console.log(head)//1
+      console.log(tail)//[2, 3, 4]
 
 
 
-    // 默认值
-    // 解构赋值允许指定默认值。
+      // 默认值
+      // 解构赋值允许指定默认值。
 
-    let [fo=true] = [];
-    console.log(fo)
+      let [fo = true] = [];
+      console.log(fo)
+
+    })();
   </script>
 
   <script>
-    let { A, B } = { foo: "aaa", bar: "bbb" };
-    console.log(A)//undefined
-    console.log(B)//undefined
 
-    //对象的属性没有次序，变量必须与属性同名，才能取到正确的值
-    let { C, D } = {  D: "bbb",C: "aaa" };
-    console.log(C)//aaa
-    console.log(D)//bbb
+    (function () {
+      let { A, B } = { foo: "aaa", bar: "bbb" };
+      console.log(A)//undefined
+      console.log(B)//undefined
 
-    let { bazz } = { foo: "aaa", bar: "bbb" };
-    console.log(bazz) // undefined
+      //对象的属性没有次序，变量必须与属性同名，才能取到正确的值
+      let { C, D } = { D: "bbb", C: "aaa" };
+      console.log(C)//aaa
+      console.log(D)//bbb
+
+      let { bazz } = { foo: "aaa", bar: "bbb" };
+      console.log(bazz) // undefined
 
 
-    let { bazzz } = { foo: "aaa", bazzz: "bbb" };
-    console.log(bazzz) // bbb
+      let { bazzz } = { foo: "aaa", bazzz: "bbb" };
+      console.log(bazzz) // bbb
+
+    })(); -->
+
+
+  <script>
+    // 完全解构
+    (function () {
+      // 解构赋值：按照一定格式，从对象或数组中提取值，并赋值给变量
+      let [a, b, c] = [1, 2, 3]
+      console.log(a)
+      console.log(b)
+      console.log(c)
+
+      let [foo, [[bar], baz]] = ['a', [['b'], 'c']]
+      console.log(foo)
+      console.log(bar)
+      console.log(baz)
+
+      let [, , third] = [4, 5, 6]
+      console.log(third)
+
+      let [x, , y] = [7, 8, 9]
+      console.log(x)
+      console.log(y)
+
+      let [head, ...tail] = [11, 22, 33, 44]
+      console.log(head)
+      console.log(tail)
+
+      let [aa, bb, ...cc] = ['A']
+      console.log(aa) //A
+      console.log(bb) // undefind
+      console.log(cc) // []
+
+      // 解构不成功，值为undefind
+      let [dd] = []
+      let [ee, ff] = [1]
+      console.log(dd) //undefined
+      console.log(ee) //1
+      console.log(ff) //undefined
+
+    })();
+
+    // 不完全解构
+    (function () {
+      let [x, y] = [1, 2, 3]
+      console.log(x)
+      console.log(y)
+
+      let [a, [b], d] = [1, [2, 3], 4]
+      console.log(a)
+      console.log(b)
+      console.log(d)
+
+      // 如果等号右边是不可遍历解构，则报错
+      // let [foo1] = 1; //Uncaught TypeError: 1 is not iterable
+      // let [foo2] = false;//Uncaught TypeError: 1 is not iterable
+      // let [foo3] = NaN;//Uncaught TypeError: 1 is not iterable
+      // let [foo4] = undefined;//Uncaught TypeError: 1 is not iterable
+      // let [foo5] = null;//Uncaught TypeError: 1 is not iterable
+      // let [foo6] = {};//Uncaught TypeError: 1 is not iterable
+
+      function* fibs() {
+        let a = 0;
+        let b = 1;
+        while (true) {
+          yield a;
+          [a, b] = [b, a + b];
+        }
+      }
+
+      let [first, second, third, fourth, fifth, sixth] = fibs();
+      console.log(sixth) // 5
+
+
+      // 默认值
+      let [foo7 = true] = []
+      console.log('foo7')
+      console.log(foo7)
+      console.log('foo7')
+
+      let [x1, y1 = 'b'] = ['a']
+      console.log(x1)
+      console.log(y1)
+
+
+      // 当要赋值的值严格等于undefined时，默认值才会生效
+      let [m, n = 'n'] = ['m']
+      let [p, q = 'q'] = ['p', undefined]
+      console.log(m)
+      console.log(n)
+      console.log(p)
+      console.log(q)
+
+      // 惰性求值
+      function f() {
+        console.log('aaa')
+        return 'kkk'
+      }
+
+      let [xx = f()] = [1] //xx能渠道值，所以函数f根本不执行
+      console.log(xx)
+
+    })();
+
+
+    // 对象的结构赋值，不同点  数组是按索引位置，对象是要严格对照key名字
+    (function () {
+      let { foo, bar } = { foo: 'aaa', bar: 'bbb' }
+      console.log(foo)
+      console.log(bar)
+
+      let { too } = { far: 'too' }
+      console.log(too)
+
+
+    })();
+
+    (function () {
+      // 变量名与属性名不一致，必须写成下面这样
+      // foo是匹配的模式，baz才是变量，真正被赋值的是变量baz，而不是foo
+      let { foo: baz } = { foo: 'haha', bar: 'hehe' }
+      console.log(baz)
+
+      let obj = { first: 'hello', last: 'word' }
+      let { first: f, last: l } = obj
+      console.log(f)
+      console.log(l)
+
+    })();
+    (function () {
+      //  与数组一样，解构页可以用于嵌套解构的对象
+      let obj = {
+        p: [
+          'hellow',
+          { y: 'word' }
+        ]
+      };
+      // p是模式，不是变量。因此不会被赋值
+      // let {p:[x,{y}]} = obj
+      // console.log(x)
+      // console.log(y)
+
+      //给p赋值
+      let { p, p: [x, { y }] } = obj
+      console.log(p)
+
+    })();
+
+    // 解构对象的默认值
+    (function () {
+      // let {x=3} = {}
+      // console.log('对象的默认值-------')
+      // console.log(x) // 3
+
+      // var { x, y = 5 } = { x: 1 }
+      // console.log(x)//1
+      // console.log(y)//5
+
+      // var {x:y=3} = {}
+      // console.log(y) //3
+
+      // var {message:msg="msg默认值"} = {}
+      // console.log(msg)
+
+      // 和数组的结构一致，对象的默认值生效条件严格等于undefined
+      var { x = 3 } = { x: undefined }
+      console.log(x) // 3
+
+      var { y = 4 } = { y: null }
+      console.log(y)//null
+    })();
+
+    // 字符串也可以解构赋值
+    (function () {
+      const [a, b, c, d, e] = 'hello'
+      console.log(a)
+      console.log(b)
+      console.log(c)
+      console.log(d)
+      console.log(e)
+    })();
+
+    // 函数参数的解构赋值
+    (function () {
+      function add([x, y]) {
+        return x + y;
+      }
+      function add1({ x, y }) {
+        return x + y;
+      }
+      console.log(add([3, 6]))
+      console.log(add1({ x: 10, y: 30 }))
+    })();
+
+    // 变量解构赋值的用途
+    (function () {
+      // 1、交换变量的值
+      let x = 1;
+      let y = 2;
+      [x, y] = [y, x]
+      console.log(x)
+      console.log(y)
+
+      // 2、从函数返回多个值
+      function example() {
+        return [1, 2, 3] //返回一个数组
+      }
+      let [a, b, c] = example()
+      console.log(a)
+      console.log(b)
+      console.log(c)
+
+      // 返回一个对象
+      function example2() {
+        return {
+          foo: 'foo',
+          bar: 'bar'
+        }
+      }
+
+      let { foo, bar } = example2()
+      console.log(foo)
+      console.log(bar)
+
+
+    })();
+    (function () {
+      // 3、函数参数的定义
+      function f([x, y, z]) {
+        console.log(x)
+        console.log(y)
+        console.log(z)
+      }
+      f([9, 8, 7])
+
+      function f2({ x, y, z }) {
+        console.log(x)
+        console.log(y)
+        console.log(z)
+      }
+      f2({ z: 'z', y: 'y', x: 'x' })
+
+    })();
+
+    // 4 提取json数据
+    (function () {
+      let jsonData = {
+        id: 42,
+        status: 'ok',
+        data: [867, 5309]
+      }
+      let { id, status, data } = jsonData
+      console.log(id)
+      console.log(status)
+      console.log(data)
+
+      // 5、函数参数的默认值
+      function f(x = 1111, y = 22222) {
+        console.log(x)
+        console.log(y)
+      }
+      f('kkk', 'mmm')
+
+
+      // 6、遍历Map解构
+      const map = new Map()
+      map.set('first', 'hello')
+      map.set('second', 'word')
+      for (let [key, value] of map) {
+        console.log(key + ' is ' + value)
+      }
+
+      // 获取键名
+      for (let [key] of map) {
+        console.log(key)
+      }
+      // 获取值
+      for (let [, value] of map) {
+        console.log(value)
+      }
+
+
+      // 输入模块的指定方法
+      // const { source1, source2 } = require('source-map')
+
+    })();
+
 
   </script>
-  </body>
+
+  </script>
+</body>
+
 </html>

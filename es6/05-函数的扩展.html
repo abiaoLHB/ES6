@@ -256,7 +256,7 @@
       //箭头函数和数组
       let sortValues = [8,5,9,10,56,0,1,12];
       let sortValues1 = [8,5,9,10,56,0,1,12];
-      
+
       let result = sortValues.sort(function(a,b){
         return a-b;
       })
@@ -265,6 +265,9 @@
 
 
     })();
+
+    // 不适用于写箭头函数的地方
+    // 对象的内部，因为对象不构成单独的左右，用箭头函数会导致this静态绑定到window
 
 
 

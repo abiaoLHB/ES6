@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象的扩展方法</title>
+</head>
+
+<body>
+    <script>
+        // Object.is()
+        console.log(Object.is('foo', 'foo')) //true
+        console.log(Object.is({}, {})) //false
+
+        // Object.assign() 用于对象的合并，将原对象的所有可枚举属性，复制到目标对象
+        const target = { a: 1 }
+        const source1 = { b: 2 }
+        const source2 = { c: 3 }
+        Object.assign(target,source1,source2)
+        console.log(target)
+
+        // 同名属性，后面会覆盖前面
+        const source3 = {c:4}
+        Object.assign(target,source3)
+        console.log(target)
+
+        // console.log(Object.assign(null)) // 报错
+        // console.log(Object.assign(undefined)) //报错
+        console.log(Object.assign(target,'hellowWord!'))
+
+        // 浅拷贝
+        const tarobj = {}
+        const obj1 = {a:{b:1}}
+        const obj2 = {c:3}
+        console.log(Object.assign(tarobj,obj1,obj2))
+        console.log('tarobj')
+        console.log(tarobj)
+        console.log('tarobj')
+        obj1.a.d ='d'
+        console.log(tarobj)
+
+    </script>
+</body>
+
+</html>
